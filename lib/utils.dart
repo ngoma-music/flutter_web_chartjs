@@ -16,7 +16,7 @@ class Utils {
     var c = linearGradient;
     var gradient = [];
 
-    c.stops.asMap().forEach((key, value) {
+    c.stops!.asMap().forEach((key, value) {
       gradient.add({"stop": value, "color": Utils.toRGBA(c.colors[key])});
     });
 

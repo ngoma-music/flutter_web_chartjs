@@ -195,11 +195,11 @@ class ChartConfig {
 
   /// `ChartData` - ChartJS config > data property.
   /// Set the ChartJS data.
-  ChartData data;
+  ChartData? data;
 
   /// `ChartOptions` - ChartJS config > options property.
   /// Set the ChartJS options.
-  ChartOptions options;
+  ChartOptions? options;
 
   /// `ChartConfig` - ChartJS config
   ///
@@ -213,10 +213,10 @@ class ChartConfig {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['type'] = describeEnum(type);
     if (this.data != null) {
-      data['data'] = this.data.toJson();
+      data['data'] = this.data!.toJson();
     }
     if (this.options != null) {
-      data['options'] = this.options.toJson();
+      data['options'] = this.options!.toJson();
     }
     return data;
   }
@@ -229,17 +229,17 @@ class ChartConfig {
 /// `labels` - `List<String>` - List of labels for each dataset. The length has to be equal to `datasets` length.
 class ChartData {
   /// `datasets` - `List<ChartDataset>` - List of ChartDataset with the chart data.
-  List<ChartDataset> datasets;
+  List<ChartDataset>? datasets;
 
   /// `labels` - `List<String>` - List of labels for each dataset. The length has to be equal to `datasets` length.
-  List<String> labels;
+  List<String>? labels;
 
   ChartData({this.datasets, this.labels});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.datasets != null) {
-      data['datasets'] = this.datasets.map((v) => v.toJson()).toList();
+      data['datasets'] = this.datasets!.map((v) => v.toJson()).toList();
     }
     data['labels'] = this.labels;
     return data;
@@ -247,10 +247,10 @@ class ChartData {
 }
 
 class ChartDataset {
-  List<dynamic> data;
+  List<dynamic>? data;
   dynamic backgroundColor;
-  String label;
-  ChartDatasetFill fill;
+  String? label;
+  ChartDatasetFill? fill;
   dynamic borderColor;
 
   ChartDataset(
@@ -297,7 +297,7 @@ class ChartDataset {
     }
 
     if (fill != null) {
-      data['fill'] = describeEnum(fill).replaceAll('isFalse', 'false');
+      data['fill'] = describeEnum(fill!).replaceAll('isFalse', 'false');
     }
 
     return data;
@@ -305,16 +305,16 @@ class ChartDataset {
 }
 
 class ChartSteppedLine {
-  ChartSteppedLineType steppedLine;
-  String label;
-  Color color;
+  ChartSteppedLineType? steppedLine;
+  String? label;
+  Color? color;
 
   ChartSteppedLine({this.steppedLine, this.label, this.color});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.steppedLine != null) {
-      data['steppedLine'] = describeEnum(this.steppedLine)
+      data['steppedLine'] = describeEnum(this.steppedLine!)
           .replaceAll('isFalse', 'false')
           .replaceAll('isTrue', 'true');
     }
@@ -324,7 +324,7 @@ class ChartSteppedLine {
     }
 
     if (this.color != null) {
-      data['color'] = Utils.toRGBA(color);
+      data['color'] = Utils.toRGBA(color!);
     }
 
     return data;
@@ -332,13 +332,13 @@ class ChartSteppedLine {
 }
 
 class ChartOptions {
-  ChartLegend legend;
-  bool responsive;
-  ChartTitle title;
-  ChartScales scales;
-  ChartAnimationConfiguration animationConfiguration;
-  ChartLayout layout;
-  ChartTooltip tooltip;
+  ChartLegend? legend;
+  bool? responsive;
+  ChartTitle? title;
+  ChartScales? scales;
+  ChartAnimationConfiguration? animationConfiguration;
+  ChartLayout? layout;
+  ChartTooltip? tooltip;
 
   ChartOptions(
       {this.legend,
@@ -352,7 +352,7 @@ class ChartOptions {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.legend != null) {
-      data['legend'] = this.legend.toJson();
+      data['legend'] = this.legend!.toJson();
     }
 
     if (this.title != null) {
@@ -360,19 +360,19 @@ class ChartOptions {
     }
 
     if (this.animationConfiguration != null) {
-      data['animation'] = this.animationConfiguration.toJson();
+      data['animation'] = this.animationConfiguration!.toJson();
     }
 
     if (this.scales != null) {
-      data['scales'] = this.scales.toJson();
+      data['scales'] = this.scales!.toJson();
     }
 
     if (this.layout != null) {
-      data['layout'] = this.layout.toJson();
+      data['layout'] = this.layout!.toJson();
     }
 
     if (this.tooltip != null) {
-      data['tooltips'] = this.tooltip.toJson();
+      data['tooltips'] = this.tooltip!.toJson();
     }
 
     if (this.responsive != null) {
@@ -384,9 +384,9 @@ class ChartOptions {
 }
 
 class ChartTooltip {
-  ChartTooltipMode mode;
-  bool intersect;
-  ChartCallbacks callbacks;
+  ChartTooltipMode? mode;
+  bool? intersect;
+  ChartCallbacks? callbacks;
 
   ChartTooltip({this.mode, this.intersect, this.callbacks});
 
@@ -394,7 +394,7 @@ class ChartTooltip {
     final Map<String, dynamic> data = new Map<String, dynamic>();
 
     if (this.mode != null) {
-      data['mode'] = describeEnum(this.mode).replaceAll('isIndex', 'index');
+      data['mode'] = describeEnum(this.mode!).replaceAll('isIndex', 'index');
     }
 
     if (this.intersect != null) {
@@ -406,13 +406,13 @@ class ChartTooltip {
 }
 
 class ChartCallbacks {
-  dynamic Function(ChartTooltipItem) label;
+  dynamic Function(ChartTooltipItem)? label;
 
   ChartCallbacks({this.label});
 }
 
 class ChartLayout {
-  EdgeInsetsGeometry padding;
+  EdgeInsetsGeometry? padding;
 
   ChartLayout({this.padding});
 
@@ -433,19 +433,19 @@ class ChartLayout {
 }
 
 class ChartAnimationConfiguration {
-  Duration duration;
-  ChartEasing easing;
+  Duration? duration;
+  ChartEasing? easing;
 
   ChartAnimationConfiguration({this.duration, this.easing});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.duration != null) {
-      data['duration'] = this.duration.inMilliseconds;
+      data['duration'] = this.duration!.inMilliseconds;
     }
 
     if (this.easing != null) {
-      data['easing'] = describeEnum(this.easing);
+      data['easing'] = describeEnum(this.easing!);
     }
 
     return data;
@@ -453,8 +453,8 @@ class ChartAnimationConfiguration {
 }
 
 class ChartTitle {
-  bool display;
-  String text;
+  bool? display;
+  String? text;
 
   ChartTitle({this.display, this.text});
 
@@ -468,8 +468,8 @@ class ChartTitle {
 }
 
 class ChartScales {
-  List<ChartAxis> xAxes = [];
-  List<ChartAxis> yAxes = [];
+  List<ChartAxis>? xAxes = [];
+  List<ChartAxis>? yAxes = [];
 
   ChartScales({this.xAxes, this.yAxes});
 
@@ -479,7 +479,7 @@ class ChartScales {
     if (this.xAxes != null) {
       List<Map<String, dynamic>> _xAxes = [];
 
-      for (var item in this.xAxes) {
+      for (var item in this.xAxes!) {
         _xAxes.add(item.toJson());
       }
 
@@ -489,7 +489,7 @@ class ChartScales {
     if (this.yAxes != null) {
       List<Map<String, dynamic>> _yAxes = [];
 
-      for (var item in this.yAxes) {
+      for (var item in this.yAxes!) {
         _yAxes.add(item.toJson());
       }
 
@@ -500,15 +500,15 @@ class ChartScales {
 }
 
 class ChartDisplayFormats {
-  String millisecond;
-  String second;
-  String minute;
-  String hour;
-  String day;
-  String week;
-  String month;
-  String quarter;
-  String year;
+  String? millisecond;
+  String? second;
+  String? minute;
+  String? hour;
+  String? day;
+  String? week;
+  String? month;
+  String? quarter;
+  String? year;
 
   ChartDisplayFormats({this.millisecond, this.second, this.minute, this.hour,
       this.day, this.week, this.month, this.quarter, this.year});
@@ -530,14 +530,14 @@ class ChartDisplayFormats {
 }
 
 class ChartAxisTime {
-  ChartDisplayFormats displayFormats;
-  bool isoWeekday;
-  String parser;
-  ChartAxisTimeUnit round;
-  String tooltipFormat;
-  ChartAxisTimeUnit unit;
-  int stepSize;
-  ChartAxisTimeUnit minUnit;
+  ChartDisplayFormats? displayFormats;
+  bool? isoWeekday;
+  String? parser;
+  ChartAxisTimeUnit? round;
+  String? tooltipFormat;
+  ChartAxisTimeUnit? unit;
+  int? stepSize;
+  ChartAxisTimeUnit? minUnit;
 
   ChartAxisTime(
       {this.displayFormats,
@@ -553,26 +553,26 @@ class ChartAxisTime {
     final Map<String, dynamic> data = new Map<String, dynamic>();
 
     if (this.displayFormats != null)
-      data['displayFormats'] = this.displayFormats.toJson();
+      data['displayFormats'] = this.displayFormats!.toJson();
     if (this.isoWeekday != null) data['isoWeekday'] = this.isoWeekday;
     if (this.parser != null) data['parser'] = this.parser;
-    if (this.round != null) data['round'] = describeEnum(this.round);
+    if (this.round != null) data['round'] = describeEnum(this.round!);
     if (this.tooltipFormat != null) data['tooltipFormat'] = this.tooltipFormat;
-    if (this.unit != null) data['unit'] = describeEnum(this.unit);
+    if (this.unit != null) data['unit'] = describeEnum(this.unit!);
     if (this.stepSize != null) data['stepSize'] = this.stepSize;
-    if (this.minUnit != null) data['minUnit'] = describeEnum(this.minUnit);
+    if (this.minUnit != null) data['minUnit'] = describeEnum(this.minUnit!);
     return data;
   }
 }
 
 class ChartAxis {
-  ChartGridLines gridLines;
-  ChartTicks ticks;
-  bool stacked;
-  ChartCartesianAxisType type;
-  ChartScaleDistribution distribution;
-  ChartScaleBounds bounds;
-  ChartAxisTime time;
+  ChartGridLines? gridLines;
+  ChartTicks? ticks;
+  bool? stacked;
+  ChartCartesianAxisType? type;
+  ChartScaleDistribution? distribution;
+  ChartScaleBounds? bounds;
+  ChartAxisTime? time;
 
   ChartAxis(
       {this.gridLines,
@@ -587,11 +587,11 @@ class ChartAxis {
     final Map<String, dynamic> data = new Map<String, dynamic>();
 
     if (this.gridLines != null) {
-      data['gridLines'] = this.gridLines.toJson();
+      data['gridLines'] = this.gridLines!.toJson();
     }
 
     if (this.ticks != null) {
-      data['ticks'] = this.ticks.toJson();
+      data['ticks'] = this.ticks!.toJson();
     }
 
     if (this.stacked != null) {
@@ -599,47 +599,47 @@ class ChartAxis {
     }
 
     if (this.type != null) {
-      data['type'] = describeEnum(this.type);
+      data['type'] = describeEnum(this.type!);
     }
 
     if (this.distribution != null) {
-      data['distribution'] = describeEnum(this.distribution);
+      data['distribution'] = describeEnum(this.distribution!);
     }
 
     if (this.bounds != null) {
-      data['bounds'] = describeEnum(this.bounds);
+      data['bounds'] = describeEnum(this.bounds!);
     }
 
     if (this.time != null) {
-      data['time'] = this.time.toJson();
+      data['time'] = this.time!.toJson();
     }
     return data;
   }
 }
 
 class ChartTicks {
-  int min;
-  int max;
-  int sampleSize;
-  bool autoSkip;
-  int autoSkipPadding;
-  int labelOffset;
-  int maxRotation;
-  int minRotation;
-  bool mirror;
-  int padding;
-  String format;
+  int? min;
+  int? max;
+  int? sampleSize;
+  bool? autoSkip;
+  int? autoSkipPadding;
+  int? labelOffset;
+  int? maxRotation;
+  int? minRotation;
+  bool? mirror;
+  int? padding;
+  String? format;
 
   // Only apply to cartesian linear axis
-  bool beginAtZero;
-  int maxTicksLimit;
-  double precision;
-  double stepSize;
-  double suggestedMax;
-  double suggestedMin;
+  bool? beginAtZero;
+  int? maxTicksLimit;
+  double? precision;
+  double? stepSize;
+  double? suggestedMax;
+  double? suggestedMin;
 
   // Only apply to cartesian time axis
-  ChartTickSource source;
+  ChartTickSource? source;
 
   ChartTicks({
     this.min,
@@ -678,17 +678,17 @@ class ChartTicks {
     if (this.suggestedMax != null) data['suggestedMax'] = this.suggestedMax;
     if (this.suggestedMin != null) data['suggestedMin'] = this.suggestedMin;
 
-    if (this.source != null) data['source'] = describeEnum(this.source);
+    if (this.source != null) data['source'] = describeEnum(this.source!);
 
     return data;
   }
 }
 
 class ChartGridLines {
-  bool display;
-  bool drawBorder;
-  bool drawOnChartArea;
-  bool drawTicks;
+  bool? display;
+  bool? drawBorder;
+  bool? drawOnChartArea;
+  bool? drawTicks;
 
   ChartGridLines(
       {this.display, this.drawBorder, this.drawOnChartArea, this.drawTicks});
@@ -706,8 +706,8 @@ class ChartGridLines {
 }
 
 class ChartLegend {
-  ChartLegendPosition position;
-  bool display;
+  ChartLegendPosition? position;
+  bool? display;
 
   ChartLegend({this.position, this.display});
 
@@ -715,7 +715,7 @@ class ChartLegend {
     final Map<String, dynamic> data = new Map<String, dynamic>();
 
     if (this.position != null) {
-      data['position'] = describeEnum(this.position);
+      data['position'] = describeEnum(this.position!);
     }
 
     if (this.display != null) {
@@ -728,13 +728,13 @@ class ChartLegend {
 
 class ChartTooltipItem {
   dynamic xLabel;
-  num yLabel;
-  String label;
-  String value;
-  int index;
-  int datasetIndex;
-  double x;
-  double y;
+  num? yLabel;
+  String? label;
+  String? value;
+  int? index;
+  int? datasetIndex;
+  double? x;
+  double? y;
 
   ChartTooltipItem(
       {this.xLabel,
