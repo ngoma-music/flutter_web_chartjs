@@ -29,15 +29,15 @@ import 'package:flutter_web_chartjs/chartjs.wrapper.utils.dart';
 /// Create a HtmlElementView with a CanvasElement
 /// and render ChartJS with ChartConfig
 class ChartJS extends StatefulWidget {
-  final int? width;
-  final int? height;
+  final int width;
+  final int height;
   final String id;
   final ChartConfig? config;
 
   ChartJS(
       {Key? key,
-      this.width,
-      this.height,
+      required this.width,
+      required this.height,
       required this.id,
       required this.config})
       : super(key: key);
@@ -77,16 +77,8 @@ class _ChartJSState extends State<ChartJS> {
     late dynamic Function(dynamic, dynamic) formatTooltip;
 
     String Function(ChartTooltipItem)? tooltipCallback;
-    if (widget.config!.options != null) {
-      if (widget.config!.options!.tooltip != null) {
-        if (widget.config!.options!.tooltip!.callbacks != null) {
-          if (widget.config!.options!.tooltip!.callbacks!.label != null) {
-            tooltipCallback = widget.config!.options!.tooltip!.callbacks!.label
-                as String Function(ChartTooltipItem)?;
-          }
-        }
-      }
-    }
+    tooltipCallback = widget.config?.options?.tooltip?.callbacks?.label
+        as String Function(ChartTooltipItem)?;
 
     if (tooltipCallback != null) {
       formatTooltip = (_tooltipItem, _data) {

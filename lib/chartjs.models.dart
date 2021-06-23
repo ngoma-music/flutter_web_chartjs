@@ -510,8 +510,16 @@ class ChartDisplayFormats {
   String? quarter;
   String? year;
 
-  ChartDisplayFormats({this.millisecond, this.second, this.minute, this.hour,
-      this.day, this.week, this.month, this.quarter, this.year});
+  ChartDisplayFormats(
+      {this.millisecond,
+      this.second,
+      this.minute,
+      this.hour,
+      this.day,
+      this.week,
+      this.month,
+      this.quarter,
+      this.year});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();

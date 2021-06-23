@@ -187,22 +187,21 @@ class _MyAppState extends State<MyApp> {
 
   List<ChartAxis> chartxAxesTime = [
     ChartAxis(
-      type: ChartCartesianAxisType.time,
-      distribution: ChartScaleDistribution.series,
-      bounds: ChartScaleBounds.data,
-      time: ChartAxisTime(
-        displayFormats: ChartDisplayFormats(
-          month: 'MMM YY',
-        ),
-        isoWeekday: false,
-        parser: 'YYYY-MM-DD',
-        round: ChartAxisTimeUnit.month,
-        tooltipFormat: 'MMM',
-        unit: ChartAxisTimeUnit.month,
-        minUnit: ChartAxisTimeUnit.month,
-        stepSize: 2,
-      )
-    )
+        type: ChartCartesianAxisType.time,
+        distribution: ChartScaleDistribution.series,
+        bounds: ChartScaleBounds.data,
+        time: ChartAxisTime(
+          displayFormats: ChartDisplayFormats(
+            month: 'MMM YY',
+          ),
+          isoWeekday: false,
+          parser: 'YYYY-MM-DD',
+          round: ChartAxisTimeUnit.month,
+          tooltipFormat: 'MMM',
+          unit: ChartAxisTimeUnit.month,
+          minUnit: ChartAxisTimeUnit.month,
+          stepSize: 2,
+        ))
   ];
 
   List<ChartAxis> chartxAxesLogarithm = [
@@ -263,6 +262,8 @@ class _MyAppState extends State<MyApp> {
                                 return 'R\$ ${tooltip.value}';
                               }))),
                       data: _chartData),
+                  height: null,
+                  width: null,
                 ),
               ),
               Container(
