@@ -76,9 +76,9 @@ class _ChartJSState extends State<ChartJS> {
 
     late dynamic Function(dynamic, dynamic) formatTooltip;
 
-    String Function(ChartTooltipItem)? tooltipCallback;
+    late String Function(ChartTooltipItem)? tooltipCallback;
     tooltipCallback = widget.config?.options?.tooltip?.callbacks?.label
-        as String Function(ChartTooltipItem)?;
+        as String Function(ChartTooltipItem);
 
     if (tooltipCallback != null) {
       formatTooltip = (_tooltipItem, _data) {
