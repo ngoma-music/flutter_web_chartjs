@@ -29,15 +29,15 @@ import 'package:flutter_web_chartjs/chartjs.wrapper.utils.dart';
 /// Create a HtmlElementView with a CanvasElement
 /// and render ChartJS with ChartConfig
 class ChartJS extends StatefulWidget {
-  final int width;
-  final int height;
+  final int? width;
+  final int? height;
   final String id;
   final ChartConfig? config;
 
   ChartJS(
       {Key? key,
-      required this.width,
-      required this.height,
+      this.width,
+      this.height,
       required this.id,
       required this.config})
       : super(key: key);
