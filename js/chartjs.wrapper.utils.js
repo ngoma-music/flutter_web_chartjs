@@ -1,11 +1,11 @@
 window.chartJSObjects = {}
 window.chartJSWrapperPlugin = class checkContext {
   async init (element, selector) {
-    while (element.querySelector(selector) === null) {
+    while (document.querySelector(selector) === null) {
       await new Promise(resolve => setTimeout(resolve, 500));
     }
 
-    return element.querySelector(selector);
+    return document.querySelector(selector);
   };
 
   createGradient (gradientJson, chartContext) {
